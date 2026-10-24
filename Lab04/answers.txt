@@ -1,0 +1,59 @@
+LAB 04 – ANSWERS
+
+5. Create Constructor Methods
+
+Câu hỏi: Java có cho phép khai báo hai constructor, một constructor nhận title và một constructor nhận category, nếu cả hai đều có kiểu String không? Tại sao?
+
+Trả lời:
+
+Không. Java phân biệt các constructor dựa trên danh sách tham số, bao gồm số lượng, kiểu dữ liệu và thứ tự kiểu dữ liệu của các tham số, chứ không dựa trên tên tham số.
+
+Trong trường hợp này, cả hai constructor đều nhận duy nhất một tham số kiểu String nên có cùng chữ ký `DigitalVideoDisc(String)`. Vì vậy, Java sẽ báo lỗi trùng constructor.
+
+Để thực hiện constructor overloading, các constructor phải có danh sách tham số khác nhau về số lượng hoặc kiểu dữ liệu hay thứ tự kiểu dữ liệu.
+
+9. Working with Method Overloading
+
+Câu hỏi: So sánh phương thức sử dụng varargs và phương thức sử dụng array. Bạn ưu tiên phương thức nào trong trường hợp này? Tại sao?
+
+Trả lời:
+
+Cả hai phương thức đều cho phép thêm nhiều đối tượng DigitalVideoDisc vào giỏ hàng trong một lần gọi.
+
+Phương thức sử dụng array yêu cầu truyền vào một mảng các đối tượng DigitalVideoDisc. Trong khi đó, varargs cho phép truyền trực tiếp số lượng đối tượng tùy ý mà không cần khai báo mảng trước.
+
+Về bản chất, Java xử lý varargs dưới dạng mảng nên hai cách có cơ chế xử lý tương tự nhau. Do có cùng chữ ký sau khi biên dịch, hai phương thức này không thể được khai báo đồng thời với cùng tên trong một lớp.
+
+Trong trường hợp này, em ưu tiên sử dụng varargs vì cú pháp ngắn gọn, linh hoạt và dễ sử dụng hơn. Phương thức có thể nhận trực tiếp nhiều đối tượng DVD hoặc một mảng DVD có sẵn.
+
+10. Passing Arguments to Methods
+
+Câu hỏi 1: Java sử dụng pass by value hay pass by reference?
+
+Trả lời:
+
+Java luôn sử dụng cơ chế pass by value (truyền tham trị).
+
+Đối với kiểu dữ liệu nguyên thủy, phương thức nhận bản sao của giá trị biến. Đối với kiểu đối tượng, phương thức nhận bản sao của giá trị tham chiếu đến đối tượng.
+
+Vì vậy, phương thức có thể thay đổi trạng thái của đối tượng thông qua tham chiếu được truyền vào, nhưng không thể thay đổi tham chiếu của biến ban đầu ở phía hàm gọi.
+
+Câu hỏi 2: Tại sao sau khi gọi `swap(jungleDVD, cinderellaDVD)`, title của hai đối tượng vẫn không thay đổi?
+
+Trả lời:
+
+Khi gọi phương thức swap(), Java tạo bản sao của hai giá trị tham chiếu và truyền chúng vào các tham số o1 và o2.
+
+Các phép gán trong swap() chỉ hoán đổi giá trị tham chiếu của hai biến cục bộ này, không làm thay đổi tham chiếu của jungleDVD và cinderellaDVD trong phương thức main().
+
+Do đó, hai biến ban đầu vẫn tham chiếu đến các đối tượng cũ và title của chúng không thay đổi.
+
+Câu hỏi 3: Tại sao sau khi gọi `changeTitle(jungleDVD, cinderellaDVD.getTitle())`, title của jungleDVD lại thay đổi?
+
+Trả lời:
+
+Khi gọi changeTitle(), tham số dvd nhận bản sao của tham chiếu jungleDVD. Tuy nhiên, cả hai tham chiếu vẫn trỏ đến cùng một đối tượng DigitalVideoDisc trong bộ nhớ.
+
+Lệnh `dvd.setTitle(title)` thay đổi trực tiếp thuộc tính title của đối tượng đó. Vì vậy, khi truy cập lại jungleDVD trong main(), giá trị title đã được cập nhật thành "Cinderella".
+
+Điều này không mâu thuẫn với cơ chế pass by value, vì phương thức chỉ thay đổi trạng thái của đối tượng thông qua tham chiếu, chứ không thay đổi tham chiếu của biến jungleDVD.
